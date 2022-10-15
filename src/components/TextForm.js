@@ -10,16 +10,44 @@ export default function TextForm(props) {
         console.log("upper case button clicked");
         let Utxt = txt.toUpperCase();
         setTxt(Utxt)
-        props.showalert("upper case conversion","success");
+        // props.showalert("upper case conversion","success");
         // // console.log(Utxt);
     }
     const toL = () => {
-
+        
         console.log("lower case button clicked","success");
         let Ltxt = txt.toLowerCase();
         setTxt(Ltxt)
         // // console.log(Utxt);
-        props.showalert("lower case conversion","success");
+        // props.showalert("lower case conversion","success");
+        
+    }
+
+    const rmB = () => {
+
+        console.log("remove extra white spaces button clicked","success");
+        let newString = txt.replace(/\s+/g,' ').trim();
+        setTxt(newString);
+        // // console.log(Utxt);
+        // props.showalert("Extra spaces removed","success");
+    }
+
+    const cfL = () => {
+
+        console.log("capitalizefirst letter  button clicked","success");
+        
+
+        let finalSentence = txt.replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase());
+        setTxt(finalSentence);
+        // // console.log(Utxt);
+        // props.showalert("successful conversion","success");
+    }
+
+    const ccB= () => {
+
+        console.log("copied to clip board","success");
+        navigator.clipboard.writeText(txt);
+        props.showalert("copied to clip board","success");
     }
 
     const myonChange = (event) => {
@@ -40,6 +68,9 @@ export default function TextForm(props) {
                 </div>
                 <button type="submit" className="btn btn-primary m-3" onClick={toU}>TO UPPER CASE</button>
                 <button type="submit" className="btn btn-primary m-3" onClick={toL}>TO LOWER CASE</button>
+                <button type="submit" className="btn btn-primary m-3" onClick={cfL}>capitalize First letter</button>
+                <button type="submit" className="btn btn-primary m-3" onClick={rmB}>remove blank spaces</button>
+                <button type="submit" className="btn btn-primary m-3" onClick={ccB}>copy</button>
             </div>
 
             <div className='container' style={{color: props.mode ==='dark'?'white':'black'}}>
